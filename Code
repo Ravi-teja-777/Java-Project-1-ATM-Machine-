@@ -1,0 +1,272 @@
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.time.*;
+
+public class ATM{
+    static void a1(){
+         System.out.println("       welcome!\nPlease Insert Your Card.");
+    }
+    
+   static void a2(){      
+         System.out.println("Hi,Please do not Remove Your Chip Card.  Leave Your Card Inserted during\n       the Entire Transaction");
+    }
+    
+    static void a3(){
+        System.out.println("1.English\n2.Hindi");
+        System.out.print("Please Select the Language : ");
+    }
+    
+    static void a4(){
+        System.out.println("1.FAST CASH\n2.WITHDRAWAL\n3.BALANCE INQUIRY\n4.MINI STATEMENT\n5.BANKING\n6.PIN GENERATION");
+        System.out.print("Dear Coustmer,Please Select Transaction:");
+    }
+    static void suc(){
+        System.out.println("");
+    }
+    
+    static void fs(){
+        //FAST CASH
+        System.out.println();
+        System.out.println("1.100\n2.200\n3.500\n4.1000\n5.2000\n6.3000\n7.5000\n8.10000");
+        System.out.print("Please Select The Amount : ");
+    }
+    
+    static void mini(){
+        //MINI STATEMENT
+        LocalDateTime ti =LocalDateTime.now();
+        System.out.println(ti);
+        System.out.println("-------------------------------------");
+        System.out.println("     CARD NNUMBER    : ***********545");
+        System.out.println("     TRANSACTION     : MINISTATEMENT");
+        System.out.println();
+        System.out.println("RSP CODE      :  00");
+        System.out.println("2/10             255.00   TRANSFER");
+        System.out.println("1/10             15.00       TRANSFER");
+        System.out.println("29/09            255.00   TRANSFER");
+    }
+    static void bak(){
+        System.out.println("1.INTERNET BANKING\n2.CHEQUE PRINTING\n3.QUICK FUND TRANSFER\n4.BANKING CARDS\n5.POSTDATED TRANSECTION MANAGEMENT\n6.AUTO BANK RECONCILIATION");
+        System.out.print("Dear Cosutmer,Please Select Transaction :");
+    }
+    
+    static void check(){
+        LocalDate o = LocalDate.now();
+        System.out.println("                     DATE :"+o);
+        System.out.print("Name : ************      ");
+        
+    }
+    
+    static void comp(){
+        System.out.println();
+        System.out.println("Dear Coustmer,Your Transaction Sucessfully Completed !");
+    }
+    
+    static void pro(){
+        System.out.println("Your Transaction being Processed.\n           Please Wait!");
+    }
+    
+    static void bal(){
+        System.out.println("1.YES\n2.NO\nDo You Want Check The Balance : ");
+    }
+
+    public static void main(String[] args){
+        Scanner i = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
+        HashMap<Integer,Integer> acc = new HashMap<Integer,Integer>();
+        acc.put(1557,728);
+        acc.put(6182,6028);
+        acc.put(6285,13);
+        acc.put(7777,1000000);
+        acc.put(6147,258259);
+        acc.put(1973,62852);
+        acc.put(4820,1945);
+        HashMap<Integer,Integer> f = new HashMap<Integer,Integer>();
+        f.put(1,100);
+        f.put(2,200);
+        f.put(3,500);
+        f.put(4,1000);
+        f.put(5,2000);
+        f.put(6,3000);
+        f.put(7,5000);
+        f.put(8,10000);
+        try{
+            ATM.a1();
+            TimeUnit.SECONDS.sleep(3);
+            ATM.a2();
+            TimeUnit.SECONDS.sleep(3);
+            ATM.a3();
+            int lan = i.nextInt();
+            if(lan==1){
+                System.out.println();
+                System.out.print("Please Enter Your PIN : ");
+                int pin =i.nextInt();
+                if(acc.containsKey(pin)){
+                    int amt =acc.get(pin);
+                    TimeUnit.SECONDS.sleep(3);
+                    ATM.a4();
+                    int t = i.nextInt();
+                    if(t==1){
+                        ATM.fs();
+                        int q =i.nextInt();
+                        if(f.containsKey(q)){
+                            int to =f.get(q);
+                            if(to<amt){
+                           int tot=amt-to;   
+                           ATM.pro();
+                           TimeUnit.SECONDS.sleep(2);
+                           ATM.comp();
+                           ATM.bal();
+                           int e = i.nextInt();
+                           if(e==1){
+                               System.out.println("Available Balance : "+tot);
+                           }else{
+                               System.out.println("Thank You !");
+                           }
+                           
+                            }else{
+                                System.out.println();
+                                System.out.println("Insufficent Funds !");
+                            }
+                  
+                        }
+                        
+                    }else if(t==2){
+                        System.out.print("1.CREDIT\n2.CURRENT\n3.SAVIND\nPlease Select the Account Type : ");
+                        int r =i.nextInt();
+                        System.out.print("Please Enter Amount : ");
+                        int w = i.nextInt();
+                        if(w<amt){
+                            int tot =amt-w;
+                            ATM.pro();
+                            TimeUnit.SECONDS.sleep(2);
+                            ATM.comp();
+                            ATM.bal();
+                            int e = i.nextInt();
+                            if(e==1){
+                                System.out.println("Available Balance :"+tot);
+                            }else{
+                                System.out.println("THANK YOU!");
+                            }
+                        }else{
+                            System.out.println();
+                            System.out.println("Insufficent Funds ! ");
+                        }
+                      
+                    }else if(t==3){
+                        System.out.println("Available balance : "+amt);
+                    }else if(t==4){
+                        ATM.mini();
+                        System.out.println("AVAIL BAL        "+amt);
+                    }else if(t==5){
+                        ATM.bak();
+                        int bk =i.nextInt();
+                        if(bk==1){
+                            System.out.print("Dear Cosutmer,Please Enter Account Number :");
+                            String an =s.nextLine();
+                            System.out.print("Date of Birth :");
+                            String db = s.nextLine();
+                            System.out.print("Please Enter Amount :");
+                           int na = i.nextInt();
+                           
+                           if(na<amt){
+                               int tot = amt-na;
+                          ATM.pro();                               TimeUnit.SECONDS.sleep(2);
+                          ATM.comp();
+                          ATM.bal();
+                          int e = i.nextInt();
+                          if(e==1){
+                              System.out.println("Available Balance : "+tot);
+                          }else{
+                              System.out.println("THANK YOU!");
+                          }
+                           }else{
+                               System.out.println("Insufficent Funds !");
+                           }
+                           
+                        }
+                        else if(bk==2){
+                                             System.out.print("Please Enter Amount : ");
+                            int l = i.nextInt();
+                            ATM.pro();
+                            TimeUnit.SECONDS.sleep(2);
+                            ATM.check();
+                            System.out.println("             $ "+l);
+                            System.out.println("acc num : ***************545");
+                            System.out.println("               signature");
+                            TimeUnit.SECONDS.sleep(2);
+                  ATM.comp();
+                           }
+                           else if(bk==3){
+                               System.out.print("Dear Cosutmer,Please Enter Account Number :");
+                            String an =s.nextLine();
+                            System.out.print("Date of Birth :");
+                            String db = s.nextLine();
+                            System.out.print("Please Enter Amount :");
+                           int na = i.nextInt();
+                           if(na<amt){
+                               int tot= amt-na;
+                               ATM.pro();
+                               TimeUnit.SECONDS.sleep(2);
+                               ATM.comp();
+                               ATM.bal();
+                               int e = i.nextInt();
+                               if(e==1){
+                                   System.out.println("Available Balance : "+tot);
+                               }else{
+                                   System.out.println("THANK YOU!");
+                               }
+                           }else{
+                               System.out.println("Insuficent Funds!");
+                           }
+                           }else if(bk==4){                              System.out.print("Please Enter Amount : ");
+                               int h = i.nextInt();
+                               int tot = amt-h;
+                               ATM.pro();
+                               TimeUnit.SECONDS.sleep(2);
+                               ATM.comp();
+                               ATM.bal();
+                               int e =i.nextInt();
+                               if(e==1){
+                                   System.out.println("Available Balance : "+tot);
+                               }else{
+                                   System.out.println("THANK YOU!");
+                               }
+                           } else if(bk==5){
+                               System.out.println("Dear Coustmer,Currently We Are Facing Technical Issues.                                    Could You Please Wait a While");
+                               TimeUnit.SECONDS.sleep(2);
+                               ATM.bal();
+                               int e = i.nextInt();
+                               if(e==1){
+                                   System.out.println("Available Balance : "+amt);
+                               }else{
+                                   System.out.println("THANK YOU!");
+                               }
+                               
+                           }
+                       
+                    }else if(t==6){
+                        System.out.print("Enter The New PIN : ");
+                        int p = i.nextInt();
+                        System.out.print("Confirm The PIN : ");
+                        int m = i.nextInt();
+                        if(p==m){
+                            System.out.println("Your Request being Processed\n        Please Wait");
+                            TimeUnit.SECONDS.sleep(2);
+                            System.out.println("PIN Generated Successfully!");
+                        }else{
+                            System.out.println("Your PIN mis-matched Try Again");
+                        }
+                    }else{
+                        System.out.println("Plese Select The Given Transactions");
+                    }
+                }else{
+                    System.out.println("You Entered Wrong PIN");
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Something went wrong !");
+        }
+            
+    }
+    
+}
